@@ -1,0 +1,74 @@
+# Graph Connectivity & Mengerâ€™s Theorem - Cheatsheet/Reviewer
+
+## 1. Basic Graph Theory
+- **Graph**: A set of nodes (vertices) connected by edges.
+- **Connected Graph**: A graph where there is a path between every pair of nodes.
+- **Adjacency List**: A way to represent a graph using a dictionary or list of neighbors.
+
+## 2. Connectivity & Components
+- **k-Vertex-Connected**: A graph remains connected even after removing up to (k-1) vertices.
+- **k-Edge-Connected**: A graph remains connected even after removing up to (k-1) edges.
+- **Bridges**: Edges that, if removed, disconnect the graph.
+- **Articulation Points**: Vertices that, if removed, disconnect the graph.
+- **BCCs (Biconnected Components)**: Maximal subgraphs where no articulation points exist.
+
+## 3. Mengerâ€™s Theorem
+- **Definition**: The minimum number of nodes/edges needed to disconnect two nodes equals the maximum number of independent paths between them.
+- **Applications**:
+  - **Network Reliability** â†’ Identify critical nodes/edges.
+  - **Traffic Systems** â†’ Find alternative routes.
+  - **Social Networks** â†’ Identify key influencers.
+  - **Cybersecurity** â†’ Protect critical servers.
+
+## 4. Key Algorithms & Functions
+- **Finding Bridges**:
+  - Use DFS to track discovery and low values.
+- **Finding Articulation Points**:
+  - Identify nodes where removing them increases connected components.
+- **Finding BCCs**:
+  - Extract subgraphs that are 2-connected.
+- **Checking k-Connectivity**:
+  - Remove (k-1) vertices/edges and check connectivity.
+
+## 5. Python Functions
+### **Bridges & Articulation Points**
+```python
+def find_bridges(n, edges):
+    # Uses DFS to find bridges
+```
+```python
+def find_articulation_points(n, edges):
+    # Uses DFS to find articulation points
+```
+
+### **Checking Mengerâ€™s Theorem**
+```python
+def menger_vertex_connectivity(n, edges, s, t):
+    # Returns (min vertex cut, max vertex-disjoint paths)
+```
+```python
+def menger_edge_connectivity(n, edges, s, t):
+    # Returns (min edge cut, max edge-disjoint paths)
+```
+
+## 6. Example Problems
+- **Find the weakest node in a network.**
+- **Simulate road closures & find alternative routes.**
+- **Analyze the importance of users in a social network.**
+- **Test the robustness of a computer network.**
+
+## 7. How to Use in Coding Exercises
+| **Task** | **Use This Function** |
+|-----------|-----------------|
+| Find weak points in a network | `menger_vertex_connectivity()` |
+| Check alternative routes | `menger_edge_connectivity()` |
+| Simulate network attacks | `min_vertex_cut()` |
+| Optimize road networks | `min_edge_cut()` |
+
+## 8. Useful Tips
+âœ” Always use **DFS** to explore connectivity.  
+âœ” If **min-cut = max-disjoint paths**, Mengerâ€™s Theorem holds.  
+âœ” **Graph Traversal Techniques**: DFS, BFS, and Union-Find.  
+âœ” **For large graphs**, optimize with **adjacency lists & efficient path-finding**.  
+
+You're now ready to ace your **lab exercises & coding tests** on **graph connectivity & Mengerâ€™s Theorem!** ðŸš€
