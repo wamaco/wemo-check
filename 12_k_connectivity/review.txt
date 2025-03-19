@@ -1,0 +1,66 @@
+# Recap: Graph Connectivity, Mengerâ€™s Theorem, and Lab Exercises
+
+## 1. Understanding Graph Connectivity
+- **Graph Connectivity:** A graph is connected if all nodes are reachable from each other.
+- **k-Connectivity:**
+  - **k-vertex-connected:** The graph stays connected even after removing up to **(k-1) vertices**.
+  - **k-edge-connected:** The graph stays connected even after removing up to **(k-1) edges**.
+- **Bridges & Articulation Points:**
+  - **Bridges**: Edges that, if removed, disconnect the graph.
+  - **Articulation Points**: Nodes that, if removed, disconnect the graph.
+- **BCCs (Biconnected Components):** Maximal subgraphs where **removing any single vertex doesn't disconnect it**.
+
+## 2. Your Existing Code (`bccs.py`)
+- **Finds:**
+  - Bridges (1-edge-connectivity)
+  - Articulation points (1-vertex-connectivity)
+  - BCCs (helps determine 2-connectivity)
+- **Does NOT yet check for k-connectivity (k > 2).**
+
+### What We Did:
+âœ” **Revised it into `bccs2.py`** to check for **k-vertex and k-edge connectivity.**  
+âœ” **Added functions** to remove sets of **(k-1) vertices/edges** and check connectivity.  
+
+ðŸ“¥ **Download `bccs2.py`**  
+
+## 3. Mengerâ€™s Theorem
+- **States that:**  
+  - The **minimum number of nodes or edges** needed to disconnect two nodes **equals** the **maximum number of independent paths** between them.
+- **Used for:**  
+  - Finding **network weak points** (cybersecurity, traffic, social networks).
+  - **Alternative paths** (road networks, robotics, AI planning).
+  - **Analyzing graph resilience** (critical nodes, edges).
+
+### What We Did:
+âœ” **Created `menger.py`** to compute **min vertex/edge cuts and max-disjoint paths.**  
+âœ” **Implemented a DFS-based version (`menger_revised.py`)** that avoids external libraries.  
+
+ðŸ“¥ **Download `menger.py`**  
+ðŸ“¥ **Download `menger_revised.py`**  
+
+## 4. Real-World Applications & Lab Coding Exercises
+- **Network Reliability** â†’ Find **weak points** in communication networks.
+- **Road Networks** â†’ Find **alternative routes** if roads close.
+- **Cybersecurity** â†’ Find **key servers** to protect from attacks.
+- **Social Networks** â†’ Identify **influencers** in a network.
+- **Traffic Congestion** â†’ Analyze **highways & congestion points**.
+- **Robotics & AI** â†’ Find **optimal paths and obstacles**.
+
+âœ” **Created `menger_problems.py`** to **apply Mengerâ€™s Theorem** to these problems.  
+âœ” **Used a `MengerProblems` class** to structure different problem types.
+
+ðŸ“¥ **Download `menger_problems.py`**  
+
+## 5. How to Use in Your Lab Exercises
+- **Find weak points in a network?** â†’ Use `menger_vertex_connectivity()`
+- **Check alternative routes?** â†’ Use `menger_edge_connectivity()`
+- **Simulate network attacks?** â†’ Use `min_vertex_cut()`
+- **Optimize a road network?** â†’ Use `min_edge_cut()`
+
+## Next Steps
+Would you like:
+âœ” **A visualization of Mengerâ€™s Theorem?**  
+âœ” **Optimizations for larger graphs?**  
+âœ” **Help structuring your lab report?**  
+
+We covered **a lot**, but you're now **ready to tackle k-connectivity and Menger's Theorem in lab coding exercises!** ðŸš€
