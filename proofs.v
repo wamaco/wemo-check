@@ -12,15 +12,13 @@ Definition compute_gwa (cs : list Course) : option Q := let vc := valid_courses 
 
 Definition classify_honor (g : Q) : Honor := if Qle_bool g (1#1 + 1#5) then SummaCumLaude          (* 1.20 ) else if Qle_bool g (29#20) then MagnaCumLaude         ( 1.45 ) else if Qle_bool g (7#4) then CumLaude                ( 1.75 *) else NoHonor.
 
-(* === Theorems and Proofs === *) Require Import Coq.Lists.List. Require Import Coq.QArith.QArith. Require Import Coq.micromega.Lqa. Import ListNotations.
+(* === Theorems and Proofs === *) Require Import Coq.Lists.List. Import ListNotations. Require Import Coq.QArith.QArith. Require Import Coq.Sorting.Permutation.
 
-Lemma sum_weighted_correct_aux : forall cs, sum_weighted cs = fold_right (fun c acc => if c.(credit) then c.(grade) * inject_Z (Z.of_nat c.(units)) + acc else acc) 0 cs. Proof. induction cs as [|c cs IH]; simpl; [reflexivity|]. destruct (c.(credit)); simpl; rewrite IH; lra. Qed.
-
-Theorem gwa_correct : forall cs g, compute_gwa cs = Some g -> g * inject_Z (Z.of_nat (sum_units (valid_courses cs))) = sum_weighted (valid_courses cs). Proof. intros cs g H. unfold compute_gwa in H. remember (valid_courses cs) as vcs. remember (sum_units vcs) as su. destruct (Nat.eqb su 0) eqn:E.
+Theorem gwa_correct : forall cs g, compute_gwa cs = Some g -> g * inject_Z (Z.of_nat (sum_units (valid_courses cs))) = sum_weighted (valid_courses cs). Proof. intros cs g H. unfold compute_gwa in H. remember (valid_courses cs) as vc. remember (sum_units vc) as u. destruct (u =? 0) eqn:Hu.
 
 discriminate H.
 
-inversion H. subst g. apply Nat.eqb_neq in E. rewrite <- Heqsu. rewrite Qmult_div_r. reflexivity. apply inject_Z_neq, Z.lt_neq. apply Nat2Z.inj_lt. apply Nat.neq_0_lt_0; assumption. Qed.
+inversion H. subst. apply Nat.eqb_neq in Hu. rewrite Hequ, Heqvc. field. apply inject_Z_not_eq_0. lia. Qed.
 
 
 Theorem gwa_permutation_invariant : forall cs1 cs2, Permutation cs1 cs2 -> compute_gwa cs1 = compute_gwa cs2. Admitted.
